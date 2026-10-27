@@ -26,24 +26,19 @@ const products = [
         price: 3,
         category: "Books",
         description: "authored by Antoan de Saint-Exupery "
-    }
+    },
 ];
 
-for (const obj of products) {
-    console.log(obj.title, obj.price);
-}
-
 const prodsList = document.querySelector("#prodlist1");
-// const item = document.createElement("li");
-// item.textContent = "Keyboard";
-// prodsList.append(item);
-
 for (const obj of products) {
     const item = document.createElement("li");
     const checkbox = document.createElement("input");
     const label = document.createElement("label");
+    const price = document.createElement("span");
+
+    price.textContent = ` ${obj.price} eur.`;
     checkbox.type = "checkbox";
-    item.textContent = `${obj.title} - ${obj.price} eur.`;  
-    label.append(checkbox, item);
+    label.append(checkbox, obj.title);
+    item.append(label, price);
     prodsList.append(item);
 }

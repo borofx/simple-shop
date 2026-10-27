@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Shop</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <h1>My Shop</h1>
+    <section>
+        <h2>Categories</h2>
+        <button type="button">All</button>
+        <button type="button">Tech</button>
+        <button type="button">Books</button>
+    </section>
+    <section>
+        <h2 class="products">Products list</h2>
+        <ul id="prodlist1">
+            <li>
+                <label>
+                    <input type="checkbox">
+                    tech1
+                </label>
+                <span>30.00 eur.</span>
+
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">
+                    tech2
+                </label>
+                <span>10.00 eur.</span>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">
+                    book1
+                </label>
+                <span>20.00 eur.</span>
+
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h2>Shopping cart:</h2>
+        <p>
+            Number of selected products: <span id="cart-count">0</span>
+        </p>
+        <p>Total: <span id="cart-total">0.00</span> eur</p>
+    </section>
+</body>
+
+</html>

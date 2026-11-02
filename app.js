@@ -35,6 +35,7 @@ const cartCount = document.querySelector("#cart-count");
 const cartTotal = document.querySelector("#cart-total");
 const tooltip = document.querySelector("#tooltip");
 const categoryButtons = document.querySelectorAll("[data-category]");
+const productTemplate = document.querySelector("#product-template")
 
 const checkedItems = new Set();
 let currentCategory = "All";
@@ -45,7 +46,8 @@ try {
         cartList === null ||
         cartCount === null ||
         cartTotal === null ||
-        tooltip === null
+        tooltip === null ||
+        productTemplate === null
     ) {
         throw new Error("No such html element");
     }
@@ -60,16 +62,31 @@ function showProducts() {
     prodsList.replaceChildren();
     for (const obj of products) {
         if (obj.category === currentCategory || currentCategory === "All") {
-            const item = document.createElement("li");
-            const checkbox = document.createElement("input");
-            const label = document.createElement("label");
-            const price = document.createElement("span");
+            // const item = document.createElement("li");
+            // const checkbox = document.createElement("input");
+            // const label = document.createElement("label");
+            // const price = document.createElement("span");
 
+            // price.textContent = ` ${obj.price} eur`;
+            // checkbox.type = "checkbox";
+            // checkbox.checked = checkedItems.has(obj.id);
+            // label.append(checkbox, " " + obj.title, price);
+            // item.append(label);
+            // prodsList.append(item);
+
+            const content = productTemplate.content;
+            const productRow = content.firstElementChild;
+            const item = productRow.cloneNode(true);
+            
+            const checkbox = item.querySelector("input");
+            const title = item.querySelector(".product-title");
+            const price = item.querySelector(".product-price");
+
+            title.textContent = obj.title;
             price.textContent = ` ${obj.price} eur`;
-            checkbox.type = "checkbox";
+
             checkbox.checked = checkedItems.has(obj.id);
-            label.append(checkbox, " " + obj.title, price);
-            item.append(label);
+
             prodsList.append(item);
 
             checkbox.addEventListener("change", function () {

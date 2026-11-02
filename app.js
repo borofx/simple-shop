@@ -32,11 +32,25 @@ const products = [
 const prodsList = document.querySelector("#prodlist1");
 const cartList = document.querySelector("#cart-items");
 const cartCount = document.querySelector("#cart-count");
-const cartTotal = document.querySelector("#cart-total");
+const cartTotal = document.querySelector("#car-total");
 const tooltip = document.querySelector("#tooltip");
 const categoryButtons = document.querySelectorAll("[data-category]");
 
 const checkedItems = new Set();
+
+try {
+    if (
+        prodsList === null ||
+        cartList === null ||
+        cartCount === null ||
+        cartTotal === null ||
+        tooltip === null
+    ) {
+        throw new Error("No such html element");
+    }
+} catch (error) {
+    console.error(error.message);
+}
 
 let currentCategory = "All";
 
@@ -108,5 +122,6 @@ for (const button of categoryButtons) {
         showProducts();
     });
 }
+
 showCart();
 showProducts();

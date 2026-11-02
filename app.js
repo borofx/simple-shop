@@ -32,11 +32,12 @@ const products = [
 const prodsList = document.querySelector("#prodlist1");
 const cartList = document.querySelector("#cart-items");
 const cartCount = document.querySelector("#cart-count");
-const cartTotal = document.querySelector("#car-total");
+const cartTotal = document.querySelector("#cart-total");
 const tooltip = document.querySelector("#tooltip");
 const categoryButtons = document.querySelectorAll("[data-category]");
 
 const checkedItems = new Set();
+let currentCategory = "All";
 
 try {
     if (
@@ -48,11 +49,12 @@ try {
     ) {
         throw new Error("No such html element");
     }
+    showCart();
+    showProducts();
 } catch (error) {
     console.error(error.message);
 }
 
-let currentCategory = "All";
 
 function showProducts() {
     prodsList.replaceChildren();
@@ -122,6 +124,3 @@ for (const button of categoryButtons) {
         showProducts();
     });
 }
-
-showCart();
-showProducts();

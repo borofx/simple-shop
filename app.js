@@ -34,6 +34,7 @@ const cartList = document.querySelector("#cart-items");
 const cartCount = document.querySelector("#cart-count");
 const cartTotal = document.querySelector("#cart-total");
 const tooltip = document.querySelector("#tooltip");
+const categoryButtons = document.querySelectorAll("[data-category]");
 
 const checkedItems = new Set();
 
@@ -100,17 +101,12 @@ function showCart() {
     cartTotal.textContent = total.toFixed(2);
 }
 
-document.querySelector('#all').addEventListener("click", function () {
-    currentCategory = "All";
-    showProducts();
-});
-document.querySelector('#tech').addEventListener("click", function () {
-    currentCategory = "Tech";
-    showProducts();
-});
-document.querySelector('#books').addEventListener("click", function () {
-    currentCategory = "Books";
-    showProducts();
-});
+for (const button of categoryButtons) {
+    button.addEventListener("click", function () {
+        currentCategory = button.getAttribute("data-category");
+        console.log("heeiiii:", currentCategory);
+        showProducts();
+    });
+}
 showCart();
 showProducts();

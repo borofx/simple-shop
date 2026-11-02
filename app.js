@@ -33,6 +33,7 @@ const prodsList = document.querySelector("#prodlist1");
 const cartList = document.querySelector("#cart-items");
 const cartCount = document.querySelector("#cart-count");
 const cartTotal = document.querySelector("#cart-total");
+const tooltip = document.querySelector("#tooltip");
 
 const checkedItems = new Set();
 
@@ -47,11 +48,11 @@ function showProducts() {
             const label = document.createElement("label");
             const price = document.createElement("span");
 
-            price.textContent = ` ${obj.price} eur.`;
+            price.textContent = ` ${obj.price} eur`;
             checkbox.type = "checkbox";
             checkbox.checked = checkedItems.has(obj.id);
-            label.append(checkbox, obj.title);
-            item.append(label, price);
+            label.append(checkbox, " " + obj.title, price);
+            item.append(label);
             prodsList.append(item);
 
             checkbox.addEventListener("change", function () {
@@ -62,6 +63,21 @@ function showProducts() {
                 }
 
                 showCart();
+            });
+            item.addEventListener("mouseenter", function (event) {
+                tooltip.textContent = obj.description;
+                tooltip.style.display = "block";
+                tooltip.style.left = event.clientX + 10 + "px";
+                tooltip.style.top = event.clientY + 10 + "px";
+            });
+
+            item.addEventListener("mousemove", function (event) {
+                tooltip.style.left = event.clientX + 10 + "px";
+                tooltip.style.top = event.clientY + 10 + "px";
+            });
+
+            item.addEventListener("mouseleave", function () {
+                tooltip.style.display = "none";
             });
         }
     }

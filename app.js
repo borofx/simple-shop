@@ -36,27 +36,35 @@ const cartTotal = document.querySelector("#cart-total");
 
 const checkedItems = new Set();
 
-for (const obj of products) {
-    const item = document.createElement("li");
-    const checkbox = document.createElement("input");
-    const label = document.createElement("label");
-    const price = document.createElement("span");
+let currentCategory = "All";
 
-    price.textContent = ` ${obj.price} eur.`;
-    checkbox.type = "checkbox";
-    label.append(checkbox, obj.title);
-    item.append(label, price);
-    prodsList.append(item);
+function showProducts() {
+    prodsList.replaceChildren();
+    for (const obj of products) {
+        if (obj.category === currentCategory || currentCategory === "All") {
+            const item = document.createElement("li");
+            const checkbox = document.createElement("input");
+            const label = document.createElement("label");
+            const price = document.createElement("span");
 
-    checkbox.addEventListener("change", function () {
-        if (checkbox.checked) {
-            checkedItems.add(obj.id);
-        } else {
-            checkedItems.delete(obj.id);
+            price.textContent = ` ${obj.price} eur.`;
+            checkbox.type = "checkbox";
+            checkbox.checked = checkedItems.has(obj.id);
+            label.append(checkbox, obj.title);
+            item.append(label, price);
+            prodsList.append(item);
+
+            checkbox.addEventListener("change", function () {
+                if (checkbox.checked) {
+                    checkedItems.add(obj.id);
+                } else {
+                    checkedItems.delete(obj.id);
+                }
+
+                showCart();
+            });
         }
-
-        showCart();
-    });
+    }
 }
 
 function showCart() {
@@ -76,4 +84,17 @@ function showCart() {
     cartTotal.textContent = total.toFixed(2);
 }
 
+document.querySelector('#all').addEventListener("click", function () {
+    currentCategory = "All";
+    showProducts();
+});
+document.querySelector('#tech').addEventListener("click", function () {
+    currentCategory = "Tech";
+    showProducts();
+});
+document.querySelector('#books').addEventListener("click", function () {
+    currentCategory = "Books";
+    showProducts();
+});
 showCart();
+showProducts();

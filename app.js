@@ -16,14 +16,14 @@ const products = [
     {
         id: 3,
         title: "The tale of the ladder",
-        price: 12,
+        price: 0.1,
         category: "Books",
         description: "authored by Christo Smirnenski"
     },
     {
         id: 4,
         title: "Le petit prince",
-        price: 3,
+        price: 0.2,
         category: "Books",
         description: "authored by Antoan de Saint-Exupery "
     },

@@ -11,6 +11,7 @@
 
 <body>
     <h1>My Shop</h1>
+    <p id="shop-error"></p>
     <section>
         <h2>Categories</h2>
         <button data-category="All">All</button>
@@ -19,18 +20,18 @@
     </section>
     <section>
         <h2 class="products">Products list</h2>
-        <ul id="prodlist1">
+        <ul id="product-list"></ul>
 
-            <template id="product-template">
-                <li>
-                    <label>
-                        <input type="checkbox">
-                        <span class="product-title"></span>
-                        <span class="product-price"></span>
-                    </label>
-                </li>
-            </template>
-        </ul>
+        <template id="product-template">
+            <li>
+                <label>
+                    <input type="checkbox">
+                    <span class="product-title"></span>
+                    <span class="product-price"></span>
+                </label>
+            </li>
+        </template>
+
     </section>
     <section>
         <h2>Shopping cart:</h2>

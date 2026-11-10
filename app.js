@@ -1,4 +1,4 @@
-const products = [
+let products = [
     {
         id: 1,
         title: "Keyboard",
@@ -43,7 +43,7 @@ let currentCategory = "All";
 
 function validateProductInput() {
     const ids = new Set();
-
+    const validProducts = [];
     for (const product of products) {
         if (
             product === null ||
@@ -55,15 +55,18 @@ function validateProductInput() {
             typeof product.category !== "string" ||
             typeof product.description !== "string"
         ) {
-            alert("Invalid product data");
+            shopError.textContent = ("Invalid product data: " + product.title + " wasn't recognized\n");
+            continue;
         }
 
         if (ids.has(product.id)) {
-            throw new Error("A product already exists with ID: " + product.id);
+            shopError.textContent += "A product already exists with ID: " + product.id + "\n";
         }
 
         ids.add(product.id);
+        validProducts.push(product);
     }
+    return validProducts;
 }
 
 function showError(error) {
@@ -87,7 +90,7 @@ try {
         throw new Error("Missing HTML element");
     }
 
-    validateProductInput();
+    products = validateProductInput();
 
     showProducts();
     showCart();

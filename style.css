@@ -8,3 +8,7 @@
     color: lightgoldenrodyellow;
     padding: 6px;
 }
+#shop-error{
+    color:tomato;
+    white-space: pre-line;
+}
